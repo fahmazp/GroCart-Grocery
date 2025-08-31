@@ -40,12 +40,12 @@ export const userSignup = async (req,res,next) => {
 
         // generate token using id and role
         const token = generateToken(newUser._id, newUser.role)
-        res.cookie("token", token)
-        // res.cookie("token", token, {
-        //     sameSite: NODE_ENV === "production" ? "None" : "Lax",
-        //     secure: NODE_ENV === "production",
-        //     httpOnly: NODE_ENV === "production",
-        // });
+        // res.cookie("token", token)
+        res.cookie("token", token, {
+            sameSite: NODE_ENV === "production" ? "None" : "Lax",
+            secure: NODE_ENV === "production",
+            httpOnly: NODE_ENV === "production",
+        });
 
         // const { password: _, ...userData } = newUser._doc;
         res.json({data:newUser, message:"Sign up success. Account created"})
@@ -86,7 +86,12 @@ export const userLogin = async (req,res,next) => {
 
         // generate token
         const token = generateToken(userExist._id, userExist.role);
-        res.cookie("token", token)
+        
+        res.cookie("token", token, {
+            sameSite: NODE_ENV === "production" ? "None" : "Lax",
+            secure: NODE_ENV === "production",
+            httpOnly: NODE_ENV === "production",
+        });
 
         delete userExist._doc.password;
         res.json({data:userExist, message:"Login success"})
