@@ -8,7 +8,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { useEffect, useState } from "react"
-import locationsData from "..//../data/locations.json"
+import locationsData from "..//../data/Locations.json"
 import { MapPin } from "lucide-react"
 
 export function SelectLocationScroll() {
